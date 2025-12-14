@@ -1,23 +1,20 @@
 import { FaWind, FaTint, FaThermometerHalf, FaArrowUp, FaArrowDown } from 'react-icons/fa';
-// Import the motion component from Framer Motion
 import { motion } from "framer-motion";
-
-// Helper to determine the weather icon (simplified example)
 const getWeatherIcon = (main) => {
   switch (main.toLowerCase()) {
     case 'clear':
-      return '☀️'; // Sun
+      return '☀️'; 
     case 'clouds':
-      return '☁️'; // Cloud
+      return '☁️'; 
     case 'rain':
     case 'drizzle':
-      return '🌧️'; // Rain Cloud
+      return '🌧️'; 
     case 'thunderstorm':
-      return '⛈️'; // Thunderstorm
+      return '⛈️'; 
     case 'snow':
-      return '❄️'; // Snowflake
+      return '❄️'; 
     default:
-      return '🌡️'; // Thermometer
+      return '🌡️'; 
   }
 };
 
@@ -25,8 +22,7 @@ const WeatherCard = ({ data }) => {
   const weatherMain = data.weather[0].main;
   const weatherDescription = data.weather[0].description;
   const icon = getWeatherIcon(weatherMain);
-  
-  // Define the animation properties
+
   const cardVariants = {
     initial: { opacity: 0, y: 30, scale: 0.95 },
     animate: { 

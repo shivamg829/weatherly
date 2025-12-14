@@ -1,7 +1,5 @@
-import { FaSearch } from 'react-icons/fa'; // Assuming you install react-icons
-
+import { FaSearch } from 'react-icons/fa'; 
 const SearchBox = ({ city, setCity, onSearch }) => {
-  // Function to handle the 'Enter' key press
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       onSearch();
