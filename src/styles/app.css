@@ -4,3 +4,10 @@ body {
   background: linear-gradient(135deg, #74ebd5, #acb6e5);
   min-height: 100vh;
 }
+.weather-card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  margin-top: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
