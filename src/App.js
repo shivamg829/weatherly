@@ -1,3 +1,5 @@
+import './styles/app.css';
+
 function App() {
   return <h1>Weather App</h1>;
 }
