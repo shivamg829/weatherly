@@ -1,4 +1,5 @@
 import { FaSearch } from 'react-icons/fa'; 
+
 const SearchBox = ({ city, setCity, onSearch }) => {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -11,10 +12,10 @@ const SearchBox = ({ city, setCity, onSearch }) => {
       <div className="input-group">
         <input
           type="text"
-          placeholder="Enter city name (e.g., London, Tokyo)"
+          placeholder="Search for a city..."
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          onKeyDown={handleKeyDown} 
+          onKeyDown={handleKeyDown}
         />
         <button className="search-button" onClick={onSearch} aria-label="Search">
           <FaSearch className="search-icon" />

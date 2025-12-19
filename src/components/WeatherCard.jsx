@@ -1,20 +1,21 @@
 import { FaWind, FaTint, FaThermometerHalf, FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import { motion } from "framer-motion";
+
 const getWeatherIcon = (main) => {
   switch (main.toLowerCase()) {
     case 'clear':
-      return '☀️'; 
+      return '☀️';
     case 'clouds':
-      return '☁️'; 
+      return '☁️';
     case 'rain':
     case 'drizzle':
-      return '🌧️'; 
+      return '🌧️';
     case 'thunderstorm':
-      return '⛈️'; 
+      return '⛈️';
     case 'snow':
-      return '❄️'; 
+      return '❄️';
     default:
-      return '🌡️'; 
+      return '🌡️';
   }
 };
 
@@ -23,25 +24,12 @@ const WeatherCard = ({ data }) => {
   const weatherDescription = data.weather[0].description;
   const icon = getWeatherIcon(weatherMain);
 
-  const cardVariants = {
-    initial: { opacity: 0, y: 30, scale: 0.95 },
-    animate: { 
-        opacity: 1, 
-        y: 0, 
-        scale: 1,
-        transition: {
-            duration: 0.6,
-            ease: "easeOut"
-        } 
-    },
-  };
-
   return (
     <motion.div
-      className={`weather-card ${weatherMain.toLowerCase()}`}
-      variants={cardVariants}
-      initial="initial"
-      animate="animate"
+      className="weather-card"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
     >
       <div className="card-header">
         <h2 className="city-name">{data.name}, {data.sys.country}</h2>
@@ -50,38 +38,48 @@ const WeatherCard = ({ data }) => {
       <div className="weather-summary">
         <span className="weather-icon">{icon}</span>
         <h1 className="temperature">{Math.round(data.main.temp)}°C</h1>
-        <p className="description">{weatherDescription.charAt(0).toUpperCase() + weatherDescription.slice(1)}</p>
+        <p className="description">
+          {weatherDescription.charAt(0).toUpperCase() + weatherDescription.slice(1)}
+        </p>
       </div>
 
       <div className="temp-range">
-          <p className="high-temp">
-              <FaArrowUp /> {Math.round(data.main.temp_max)}°C
-          </p>
-          <p className="low-temp">
-              <FaArrowDown /> {Math.round(data.main.temp_min)}°C
-          </p>
+        <p className="high-temp">
+          <FaArrowUp /> {Math.round(data.main.temp_max)}°C
+        </p>
+        <p className="low-temp">
+          <FaArrowDown /> {Math.round(data.main.temp_min)}°C
+        </p>
       </div>
 
       <div className="details-grid">
-        <div className="detail-item">
+        <motion.div 
+          className="detail-item"
+          whileHover={{ scale: 1.05 }}
+        >
           <FaTint className="detail-icon" />
           <span>Humidity</span>
           <span className="detail-value">{data.main.humidity}%</span>
-        </div>
+        </motion.div>
         
-        <div className="detail-item">
+        <motion.div 
+          className="detail-item"
+          whileHover={{ scale: 1.05 }}
+        >
           <FaWind className="detail-icon" />
-          <span>Wind Speed</span>
+          <span>Wind</span>
           <span className="detail-value">{data.wind.speed} m/s</span>
-        </div>
+        </motion.div>
         
-        <div className="detail-item">
+        <motion.div 
+          className="detail-item"
+          whileHover={{ scale: 1.05 }}
+        >
           <FaThermometerHalf className="detail-icon" />
           <span>Feels Like</span>
           <span className="detail-value">{Math.round(data.main.feels_like)}°C</span>
-        </div>
+        </motion.div>
       </div>
-      
     </motion.div>
   );
 };
